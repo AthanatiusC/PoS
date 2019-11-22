@@ -1,0 +1,95 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row" style="height:40px">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+      <div class="col">
+        <div class="card bg-secondary shadow">
+          <div class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">Shop information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Shop Name</label>
+                      <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Phone</label>
+                      <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-first-name">Postal Code</label>
+                      <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Postal Code" value="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea class="form-control form-control-alternative" placeholder="Enter Shop Description"></textarea>
+                    </div>
+                  </div>  
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Shop Address</label>
+                      <textarea rows="4" class="form-control form-control-alternative" placeholder="Enter Shop Adress"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Address -->
+              <h6 class="heading-small text-muted mb-4">User list</h6>
+              <div class="pl-lg-4">
+                  <div class="table-responsive">
+                      <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Access Level</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>1</td>
+                            <td>Contoh</td>
+                            <td>Contoh</td>
+                            <td>
+                              <i class="ni ni-scissors btn btn-danger"></i>
+                              <i class="ni ni-ruler-pencil btn btn-primary"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row" style="height:40px">
+                        <Button class="col-md-1 btn btn-success" data-toggle="modal" data-target="#exampleModal" (click)="navigate()"><span>Add</span></Button>
+                    </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
