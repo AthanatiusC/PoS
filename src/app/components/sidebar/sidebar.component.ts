@@ -31,14 +31,26 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
+  private islogged:boolean
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
-    this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
-   });
+    if (sessionStorage.length! > 0) {
+      if (sessionStorage.getItem("isloggedin") == "true") {
+        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.router.events.subscribe((event) => {
+        this.isCollapsed = true;
+      });
+      }
+      else if(this.islogged == false)  {
+        console.log("Unauthorized")
+        this.router.navigate(['/login'])
+      }
+    } else {
+      console.log("Unauthorized")
+        this.router.navigate(['/login'])
+    }
   }
   onClick() {
     sessionStorage.clear()

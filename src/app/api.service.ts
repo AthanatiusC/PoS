@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ApiService implements OnInit {
-  uri="http://localhost:3030/users"
+  uri = "http://localhost:3030/users"
+  
   
   constructor(private http: HttpClient,private router:Router) {}
   
   IsLoggedIn: boolean
   private data: any
   public user:Users
+  public isloading:boolean
 
   ngOnInit() {
     this.IsLoggedIn = this.ReAuth()

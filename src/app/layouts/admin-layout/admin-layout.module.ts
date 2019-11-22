@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
+import { NgModule, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -44,4 +44,4 @@ import { ConfigMasterComponent } from 'src/app/pages/config-master/config-master
   ]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule{}

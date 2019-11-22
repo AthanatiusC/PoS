@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   users: Observable<Users>
   loading:boolean = false 
   loggedin: boolean
+  isloading: boolean
+  buttonText:string = "Sign in"
   constructor(private api: ApiService,private router:Router ) {}
 
   ngOnInit() {
@@ -27,7 +29,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
+  onClick() {
+    this.isloading = true
+    this.buttonText = "Loading.."
+  }
+
   onSubmit(event) {
+    console.log("Test")
+    this.isloading = true
     this.email = event.target.email.value
     this.password = event.target.password.value 
     this.users = this.api.Auth(this.email,this.password)
@@ -55,5 +64,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log(err)
       }
     )
+    this.isloading = false
   }
 }
