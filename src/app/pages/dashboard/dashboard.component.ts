@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../api.service'
 import { Users } from 'src/app/users';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,14 +27,17 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
   private user: Observable<Users>
   private islogged: boolean
-  private userdata:Users
+  private userdata: Users
+  private transactions: any
+  private profile
   
-  constructor(private router: Router, private route: ActivatedRoute,private api:ApiService) { }
+  constructor(private router: Router, private route: ActivatedRoute,private api:ApiService,private http:HttpClient) { }
 
   ngOnInit() {
     if (sessionStorage.length! > 0) {
       if (sessionStorage.getItem("isloggedin") == "true") {
-        // console.log()
+        this.GetAllTransaction()
+        this.GetAllProfile()
         this.datasets = [
           [0, 20, 10, 30, 15, 40, 20, 60, 60],
           [0, 20, 5, 25, 10, 30, 15, 40, 40]
@@ -61,14 +65,24 @@ export class DashboardComponent implements OnInit {
         });
       }
       else if(this.islogged == false)  {
-        console.log("Unauthorized")
         this.router.navigate(['/login'])
       }
     } else {
-      console.log("Unauthorized")
         this.router.navigate(['/login'])
     }
     
+  }
+
+  async GetAllProfile(){
+    await this.http.get("http://localhost:3030/profile").toPromise().then(res => {
+      this.profile = res
+    })
+  }
+
+  async GetAllTransaction(){
+    await this.http.get("http://localhost:3030/transaction").toPromise().then(res => {
+      this.transactions = res
+    })
   }
 
   public updateOptions() {

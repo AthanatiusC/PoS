@@ -11,20 +11,21 @@
       <div class="col">
         <div class="card bg-secondary shadow">
           <div class="card-body">
-            <form>
+
+            <form (submit)="onSave($event)">
               <h6 class="heading-small text-muted mb-4">Shop information</h6>
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Shop Name</label>
-                      <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="">
+                      <input type="text" id="input-username" name="ShopName" class="form-control form-control-alternative" placeholder="Instance Name" value="{{ShopName}}">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">Phone</label>
-                      <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                      <input type="email" id="input-email" name="Phone" class="form-control form-control-alternative" placeholder="Phone" value="{{Phone}}">
                     </div>
                   </div>
                 </div>
@@ -32,7 +33,7 @@
                   <div class="col">
                     <div class="form-group">
                       <label class="form-control-label" for="input-first-name">Postal Code</label>
-                      <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Postal Code" value="">
+                      <input type="text" id="input-first-name" name="Zip" class="form-control form-control-alternative" placeholder="Postal Code" value="{{Zip}}">
                     </div>
                   </div>
                 </div>
@@ -40,7 +41,7 @@
                   <div class="col">
                     <div class="form-group">
                       <label>Description</label>
-                      <textarea class="form-control form-control-alternative" placeholder="Enter Shop Description"></textarea>
+                      <textarea class="form-control form-control-alternative" name="Description" placeholder="Enter Shop Description" value="{{Description}}"></textarea>
                     </div>
                   </div>  
                 </div>
@@ -48,21 +49,25 @@
                   <div class="col">
                     <div class="form-group">
                       <label>Shop Address</label>
-                      <textarea rows="4" class="form-control form-control-alternative" placeholder="Enter Shop Adress"></textarea>
+                      <textarea rows="4" class="form-control form-control-alternative" name="Address" placeholder="Enter Shop Adress" value="{{Address}}"></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col" align="right">
-                    <button class="btn btn-success"><span>Save</span></button>
+                    <button class="btn btn-success" type="submit"><span>Save</span></button>
                   </div>
                 </div>
               </div>
+            </form>
+
+            <form >
               <hr class="my-4" />
               <!-- Address -->
               <h6 class="heading-small text-muted mb-4">User list</h6>
               <div class="pl-lg-4">
-                  <div class="table-responsive">
+                  <Button style="margin:20px" class="btn btn-success" data-toggle="modal" data-target="#modal1"><span>Add</span></Button>
+                  <div style="height: 500px;overflow: auto" class="table-responsive">
                       <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                           <tr>
@@ -74,50 +79,103 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>1</td>
-                            <td>Contoh</td>
-                            <td>Contoh</td>
+                          <tr *ngFor="let user of users">
+                            <th scope="row">{{user._id}}</th>
+                            <td>{{user.name}}</td>
+                            <td>{{user.contact}}</td>
+                            <td>{{user.role}}</td>
                             <td>
-                              <i class="ni ni-scissors btn btn-danger"></i>
-                              <i class="ni ni-ruler-pencil btn btn-primary"></i>
+                              <a style="padding:5px" (click)="click(user._id)" type="button" data-toggle="modal" data-target="#modal2"><i class="ni ni-scissors btn btn-danger"></i></a>
                             </td>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Attention!</h5>
+                                    <button type="button" id="close2" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Are you sure you?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button (click)="onDelete()" type="button" class="btn btn-primary">Yes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                    <div class="row" style="height:40px">
-                      <div class="col" align="right">
-                          <Button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" (click)="navigate()"><span>Add</span></Button>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Users</h5>
+                            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form>
-                              <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                              </div>
-                              <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <form (submit)="onCreate($event)">
+                              <h6 class="heading-small text-muted mb-4">User Detail</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label class="form-control-label" for="input-username">Name</label>
+                                      <input name="name" type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label class="form-control-label" for="input-email">Contact</label>
+                                      <input name="contact" type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label class="form-control-label" for="input-email">Username</label>
+                                      <input name="username" type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <label class="form-control-label" for="input-email">Password</label>
+                                      <input name="password" type="password" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group">
+                                      <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                                        </div>
+                                        <select name="role" class="custom-select" id="inputGroupSelect01">
+                                          <option *ngFor="let role of roles" selected value="{{role.Name}}">{{role.Name}}</option>
+                                          <!-- <option id="{{role._id}}" value="{{role.name}}">{{role.name}}</option> -->
+                                        </select>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row" align="right">
+                                    <button class="btn btn-success" style="float: right;" type="submit">Save</button>
+                                </div>
                               </div>
                             </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
                           </div>
                         </div>
                       </div>

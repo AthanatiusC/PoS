@@ -13,8 +13,10 @@ export class InsertuserComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSave() {
-    this.router.navigate(["inventory"])
+  Save() {
+    this.router.navigate(["master"])
   }
 
 }
+// TODO Create Automated Barcode Generator
+// TODO Create Product Code Generator

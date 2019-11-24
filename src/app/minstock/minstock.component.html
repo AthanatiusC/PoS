@@ -1,0 +1,69 @@
+<h6 class="heading-small text-muted mb-4">Minstock & Ppn</h6>
+<div class="pl-lg-4">
+  <h6 class="heading-small text-muted mb-4">Minstock</h6>
+  <div align="right">
+      <div style="margin: 5px;" style="display: inline-block;" class="row">
+        <div class="col">
+          <div class="form-group">
+            <input [(ngModel)]="username" class="form-control form-control-alternative" placeholder="Add Currency">
+          </div>
+        </div>
+      </div>
+      <button style="margin: 5px;" class="btn btn-primary" (click)="onAddCurrency(username)">Add</button>
+      <!-- <Button style="margin:20px" class="btn btn-success" data-toggle="modal" data-target="#Modal1"><span>Add</span></Button> -->
+  </div>
+  <div style="height: 300px;overflow: auto" class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Currency of currency">
+            <th scope="row">{{Currency._id}}</th>
+            <td>{{Currency.Name}}</td>
+            <td>
+              <a (click)="DeleteCurrency(Currency._id)" style="padding:5px" name="delete"><i class="ni ni-scissors btn btn-danger"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+<hr class="my-4" />
+<h6 class="heading-small text-muted mb-4">Ppn</h6>
+    <div align="right">
+      <div style="margin: 5px;" style="display: inline-block;" class="row">
+        <div class="col">
+          <div class="form-group">
+            <input [(ngModel)]="value" class="form-control form-control-alternative" placeholder="Add Unit">
+          </div>
+        </div>
+      </div>
+      <button style="margin: 5px;" class="btn btn-primary" (click)="onAddPpn(username)">Add</button>
+      <!-- <Button style="margin:20px" class="btn btn-success" data-toggle="modal" data-target="#Modal1"><span>Add</span></Button> -->
+  </div>
+    <div style="height: 300px;overflow: auto" class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let PPN of ppn">
+              <th scope="row">{{PPN._id}}</th>
+              <td>{{PPN.Ppn}}</td>
+              <td>
+                <a (click)="DeleteUnit(Unit._id)" style="padding:5px" name="delete"><i class="ni ni-scissors btn btn-danger"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

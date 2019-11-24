@@ -18,6 +18,11 @@ import { StatisticComponent } from '../../pages/statistic/statistic.component';
 import { MasterComponent } from 'src/app/pages/master/master.component';
 import { InsertuserComponent } from 'src/app/pages/insertuser/insertuser.component';
 import { ConfigMasterComponent } from 'src/app/pages/config-master/config-master.component';
+import { CurrencyComponent } from 'src/app/currency/currency.component';
+import { CategoryComponent } from 'src/app/category/category.component';
+import { PoSComponent } from 'src/app/po-s/po-s.component';
+import { InsertproductsComponent } from 'src/app/insertproducts/insertproducts.component';
+import { MinstockComponent } from 'src/app/minstock/minstock.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -40,7 +45,12 @@ import { ConfigMasterComponent } from 'src/app/pages/config-master/config-master
     StatisticComponent,
     MasterComponent,
     InsertuserComponent,
-    ConfigMasterComponent
+    ConfigMasterComponent,
+    CurrencyComponent,
+    CategoryComponent,
+    PoSComponent,
+    InsertproductsComponent,
+    MinstockComponent
   ]
 })
 

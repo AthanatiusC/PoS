@@ -1,0 +1,73 @@
+<h6 class="heading-small text-muted mb-4">Category & Roles</h6>
+
+<div class="pl-lg-4">
+    <h6 class="heading-small text-muted mb-4">Category</h6>
+    <div align="right">
+        <div style="margin: 5px;" style="display: inline-block;" class="row">
+          <div class="col">
+            <div class="form-group">
+              <input [(ngModel)]="username" class="form-control form-control-alternative" placeholder="Add Category">
+            </div>
+          </div>
+        </div>
+        <button style="margin: 5px;" class="btn btn-primary" (click)="onAddCategory(username)">Add</button>
+    </div>
+  <div style="height: 200px;overflow: auto" class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let Category of category">
+            <th scope="row">{{Category._id}}</th>
+            <td>{{Category.Name}}</td>
+            <td>
+              <a (click)="DeleteCategory(Category._id)" style="padding:5px" name="delete"><i class="ni ni-scissors btn btn-danger"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<hr class="my-4" />
+
+<div class="pl-lg-4">
+    <h6 class="heading-small text-muted mb-4">Roles</h6>
+    <div align="right">
+        <div style="margin: 5px;" style="display: inline-block;" class="row">
+          <div class="col">
+            <div class="form-group">
+              <input [(ngModel)]="username" class="form-control form-control-alternative" placeholder="Add Role">
+            </div>
+          </div>
+        </div>
+        <button style="margin: 5px;" class="btn btn-primary" (click)="onAddRole(username)">Add</button>
+    </div>
+  <div style="height: 200px;overflow: auto" class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let Role of roles">
+            <th scope="row">{{Role._id}}</th>
+            <td>{{Role.Name}}</td>
+            <td>
+              <a (click)="DeleteRole(Role._id)" style="padding:5px" name="delete"><i class="ni ni-scissors btn btn-danger"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+

@@ -9,6 +9,8 @@ import { InventoryComponent } from '../../pages/inventory/inventory.component';
 import { MasterComponent } from 'src/app/pages/master/master.component';
 import { InsertuserComponent } from 'src/app/pages/insertuser/insertuser.component';
 import { ConfigMasterComponent } from 'src/app/pages/config-master/config-master.component';
+import { PoSComponent } from 'src/app/po-s/po-s.component';
+import { InsertproductsComponent } from 'src/app/insertproducts/insertproducts.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -19,5 +21,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'master',           component:  MasterComponent},
     { path: 'inventory',           component: InventoryComponent },
     { path: 'insertuser',           component: InsertuserComponent },
+    { path: 'PoS', component: PoSComponent },
+    { path: 'insertproduct', component: InsertproductsComponent},
     { path: 'masterconfig',           component: ConfigMasterComponent }
 ];

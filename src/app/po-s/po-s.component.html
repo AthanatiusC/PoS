@@ -1,0 +1,146 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+      <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">Products</h3>
+              </div>
+              <div style="height: 500;overflow: auto;" class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Barcode</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Classification</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col">Currency</th>
+                      <th scope="col">Buy Price</th>
+                      <th scope="col">Sell Price</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let product of products">
+                      <th scope="row">{{product._id}}</th>
+                      <td>{{product.barcode}}</td>
+                      <td>{{product.name}}</td>
+                      <td>{{product.classification}}</td>
+                      <td>{{product.stock}}</td>
+                      <td>{{product.stock}}</td>
+                      <td>{{product.buyprice}}</td>
+                      <td>{{product.price}}</td>
+                      <td>{{product.unit}}</td>
+                      <td>
+                        <button (click)="onClick(product._id)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add To Cart</button>
+                      </td>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Buy product</h5>
+                              <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form (submit)="AddCart($event)">
+                                <div class="form-group">
+                                  <label for="recipient-name" class="col-form-label">Product ID:</label>
+                                  <input type="text" name="productid" [(ngModel)]="productid" class="form-control" id="recipient-name" disabled>
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Qty:</label>
+                                  <input  class="form-control" name="qty" id="message-text" type="number">
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Discount:</label>
+                                  <div class="input-group">
+                                      <input type="text" name="discount" class="form-control">
+                                      <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
+                                      </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buy</button>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+  <div class="container-fluid mt-5">
+      <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">Carts</h3>
+              </div>
+              <div style="margin:20px">
+                  <button (click)="download()" class="btn btn-primary">Download CSV!</button>
+              </div>
+              <div style="height: 500;overflow: auto;" class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">User ID</th>
+                      <th scope="col">Invoice</th>
+                      <th scope="col">Product ID</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Ppn</th>
+                      <th scope="col">Discount</th>
+                      <th scope="col">% Revenue</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cart of carts">
+                      <th scope="row">{{cart._id}}</th>
+                      <td>{{cart.user_id}}</td>
+                      <td>{{cart.invoice}}</td>
+                      <td>{{cart.product_id}}</td>
+                      <td>{{cart.qty}}</td>
+                      <td>{{cart.ppn}}</td>
+                      <td>{{cart.discount}}%</td>
+                      <td>{{cart.percentage}}%</td>
+                      <td>{{cart.price}}</td>
+                      <td>{{cart.total}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="margin:20px">
+                  <h1 id="Message">{{message}}</h1>
+
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Recieved Money:</label>
+                      <input type="text" name="productid" [(ngModel)]="recievedmoney" class="form-control" id="recipient-name">
+                    </div>
+                  <button (click)="Finish()" class="btn btn-primary">Pay total : Rp. {{total}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
